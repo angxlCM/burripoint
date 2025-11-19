@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Metadatos del documento -->
+  <meta charset="UTF-8">
+  <title><strong>BurriPoint</strong></title>
+  
+  <!-- Estilos de Leaflet (librería de mapas) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <!-- Configuración responsiva para dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ========== ENCABEZADO (HEADER) ========== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <!-- Título principal con dos colores -->
+      <div class="titulo">
+        <span class="titulo-burri">Burri</span><!-- Color naranja -->
+        <span class="titulo-point">Point</span><!-- Color celeste -->
+      </div>
+      
+      <!-- Logo de la empresa -->
+      <img src="imagenes/BurriGo.jpg" alt="BurriGo Logo" class="logo">
+    </div>
+  </header>
+
+  <!-- ========== CONTENEDOR PRINCIPAL ========== -->
+  <div class="app-container">
+    <!-- SECCIÓN IZQUIERDA: Información y Notificaciones -->
+    <div class="info-container">
+      
+      <!-- Sección de Horario de Atención -->
+      <div class="horarios">
+        <!-- Encabezado con título e indicador de estado -->
+        <div class="horarios-header">
+          <h2>Horario de Atención</h2>
+          <!-- Badge que muestra si el servicio está activo (verde) o inactivo (rojo) -->
+          <span class="status-badge active" id="statusBadge">Activo</span>
+        </div>
+        
+        <!-- Lista de horarios -->
+        <ul>
+          <li><strong>Lunes a viernes:</strong> 7:00 am – 9:00 pm</li>
+          <li><strong>Sábados:</strong> 7:00 am – 9:00 pm</li>
+          <li><strong>Domingos:</strong> Fuera de servicio</li>
+        </ul>
+        
+        <!-- Frecuencia de paso del servicio -->
+        <div class="frecuencia">Frecuencia: Aproximadamente 20 minutos</div>
+      </div>
+
+      <!-- Sección de Notificaciones (deslizable) -->
+      <div class="notificaciones">
+        <h2>Notificaciones</h2>
+        
+        <!-- Contenedor deslizable para mostrar alertas -->
+        <div class="notificaciones-list" id="notificationsList">
+          
+          <!-- Notificación 1 -->
+          <div class="notification-item">
+            <div class="notification-time">Hace 5 min</div>
+            <div class="notification-content">Servicio disponible en zona norte</div>
+          </div>
+
+          <!-- Notificación 2 -->
+          <div class="notification-item">
+            <div class="notification-time">Hace 15 min</div>
+            <div class="notification-content">Aumento de demanda detectado</div>
+          </div>
+
+          <!-- Notificación 3 -->
+          <div class="notification-item">
+            <div class="notification-time">Hace 30 min</div>
+            <div class="notification-content">Mantenimiento completado</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECCIÓN DERECHA: Mapa interactivo -->
+    <div id="map"></div>
+  </div>
+
+  <!-- ========== BARRA INFERIOR (FOOTER) ========== -->
+  <footer class="bottombar">
+    <div class="bottombar-inner">
+      <!-- Título de contacto -->
+      <div class="footer-title">CONTÁCTANOS</div>
+      
+      <!-- Enlaces a redes sociales -->
+      <div class="footer-links">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/burripoint?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
+        
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@usuarioejemplo" target="_blank">TikTok</a>
+        
+        <!-- WhatsApp -->
+        <a href="https://wa.me/51999999999" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+
+  <!-- Librería Leaflet para mapas interactivos -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Script principal de la aplicación -->
+  <script src="script.js"></script>
+
+</body>
+</html>
+

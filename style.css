@@ -1,0 +1,358 @@
+/* ========== ESTILOS GENERALES DEL CUERPO ========== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;  /* Tipografía principal */
+  margin: 0;                                     /* Sin margen exterior */
+  padding: 0;                                    /* Sin relleno exterior */
+  /* Degradado de fondo: naranja a celeste */
+  background: linear-gradient(180deg, #eb5222 35%, #0192cc9b 85%);
+  min-height: 100vh;                             /* Altura mínima: pantalla completa */
+  color: #22223b;                                /* Color de texto por defecto */
+  position: relative;                            /* Para el elemento ::before */
+  display: flex;                                 /* NUEVO: Distribución flexbox */
+  flex-direction: column;                        /* NUEVO: Elementos en columna */
+}
+
+/* ========== EFECTO DE FONDO DECORATIVO ========== */
+/* Crea un elemento pseudoverbal invisible pero visible como fondo */
+body::before {
+  content: '';                                   /* Elemento vacío pero existe */
+  position: fixed;                               /* Se queda fijo al hacer scroll */
+  top: 0;                                        /* Desde el tope */
+  left: 0;                                       /* Desde la izquierda */
+  width: 100%;                                   /* Ancho completo */
+  height: 100%;                                  /* Alto completo */
+  /* Dos círculos de degradado para efecto decorativo */
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+  pointer-events: none;                          /* No interfiere con clics */
+  z-index: -1;                                   /* Detrás de todo */
+}
+
+/* ========== ENCABEZADO (TOPBAR) ========== */
+.topbar {
+  background: #f6ce60d8;                           /* Color amarillo */
+  color: #fff;                                   /* Texto blanco */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);      /* Sombra sutil */
+  border-bottom: #22223b 6.5px solid;            /* Borde inferior oscuro */
+}
+
+/* Contenedor interno del encabezado */
+.topbar-inner {
+  max-width: 1120px;                             /* Ancho máximo */
+  margin: 0 auto;                                /* Centrado horizontalmente */
+  padding: 14px 20px;                            /* Espaciado interno */
+  display: flex;                                 /* Distribución flexbox */
+  align-items: center;                           /* Centrado verticalmente */
+  justify-content: center;                       /* Centrado horizontalmente */
+  gap: 20px;                                     /* Espacio entre elementos */
+}
+
+/* ========== LOGO ========== */
+.logo {
+  width: 65px;                                   /* Ancho del logo */
+  height: 65px;                                  /* Alto del logo */
+  object-fit: contain;                           /* Ajusta proporción */
+  border-radius: 80px;                           /* Esquinas redondeadas (circular) */
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.15);   /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Transición suave */
+}
+
+/* Efecto al pasar el cursor sobre el logo */
+.logo:hover {
+  transform: scale(1.09);                        /* Aumenta el tamaño */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);    /* Sombra más pronunciada */
+}
+
+/* ========== TÍTULO PRINCIPAL ========== */
+.topbar .titulo {
+  color: #fff;                                   /* Texto blanco */
+  font-size: 2.7em;                              /* Tamaño grande */
+  margin: 0;                                     /* Sin margen */
+  font-weight: 700;                              /* Texto en negrita */
+  letter-spacing: 2px;                           /* Espaciado entre letras */
+  word-spacing: -0.15em;                         /* Reduce el espacio entre palabras */
+}
+
+/* Parte "Burri" del título en naranja */
+.titulo-burri {
+  color: #eb5222;
+  margin-right: -5px;                            /* Acerca "Point" hacia "Burri" */
+}
+
+/* Parte "Point" del título en celeste */
+.titulo-point {
+  color: #0191cc;
+}
+
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.app-container {
+  display: flex;                                 /* Distribución flexbox */
+  gap: 40px;                                     /* Espacio entre columnas */
+  max-width: 1120px;                             /* Ancho máximo */
+  margin: 20px auto;                             /* Centrado con margen superior */
+  align-items: flex-start;                       /* Alinear arriba */
+  flex: 1;                                       /* NUEVO: Toma espacio disponible */
+}
+
+/* ========== CONTENEDOR DE INFORMACIÓN ========== */
+.info-container {
+  display: flex;                                 /* Distribución flexbox */
+  flex-direction: column;                        /* Elementos en columna */
+  background: #fff;                              /* Fondo blanco */
+  border-radius: 18px;                           /* Esquinas redondeadas */
+  box-shadow: 0 4px 24px rgba(34,34,59,0.08);   /* Sombra suave */
+  padding: 36px 30px 32px 30px;                  /* Espaciado interno */
+  min-width: 340px;                              /* Ancho mínimo */
+  flex: 1;                                       /* Toma espacio disponible */
+  gap: 20px;                                     /* Espacio entre secciones */
+}
+
+/* ========== SECCIÓN DE HORARIOS ========== */
+.horarios, .notificaciones {
+  border-radius: 12px;                           /* Esquinas redondeadas */
+  padding: 22px 20px;                            /* Espaciado interno */
+  background: #fff;                              /* Fondo blanco */
+  box-shadow: 0 2px 8px rgba(2,145,204,0.07);   /* Sombra muy sutil */
+  border-left: 4px solid #0191cc;                /* Borde izquierdo celeste */
+}
+
+/* Encabezado de horarios con título e indicador */
+.horarios-header {
+  display: flex;                                 /* Distribución horizontal */
+  align-items: center;                           /* Centrado vertical */
+  justify-content: space-between;                /* Espacio entre elementos */
+  gap: 12px;                                     /* Espacio entre items */
+  margin-bottom: 12px;                           /* Margen inferior */
+}
+
+/* Títulos de secciones */
+.horarios h2, .notificaciones h2 {
+  margin: 0;                                     /* Sin margen */
+  color: #0191cc;                                /* Color celeste */
+  font-size: 1.25em;                             /* Tamaño mediano */
+  font-weight: 700;                              /* Texto en negrita */
+}
+
+/* ========== INDICADOR DE ESTADO ========== */
+.status-badge {
+  display: inline-block;                         /* Elemento en línea con alto/ancho */
+  padding: 6px 12px;                             /* Espaciado interno */
+  border-radius: 6px;                            /* Esquinas ligeramente redondeadas */
+  font-weight: 700;                              /* Texto en negrita */
+  font-size: 0.85em;                             /* Tamaño pequeño */
+  white-space: nowrap;                           /* Sin saltos de línea */
+}
+
+/* Estado ACTIVO - Verde */
+.status-badge.active {
+  background: #34be82;
+  color: #fff;
+}
+
+/* Estado INACTIVO - Rojo */
+.status-badge.inactive {
+  background: #ff5a3c;
+  color: #fff;
+}
+
+/* ========== LISTA DE HORARIOS ========== */
+.horarios ul {
+  margin: 12px 0 0 20px;                         /* Margen y sangría */
+  padding: 0;                                    /* Sin relleno */
+  list-style: none;                              /* Sin viñetas */
+}
+
+/* Elementos de la lista */
+.horarios li {
+  margin-bottom: 8px;                            /* Espacio entre items */
+  font-size: 0.95em;                             /* Tamaño un poco pequeño */
+}
+
+/* Frecuencia de paso */
+.frecuencia {
+  color: #34be82;                                /* Color verde */
+  font-weight: 600;                              /* Texto semi-negrita */
+  margin-top: 8px;                               /* Margen superior */
+  font-size: 0.95em;                             /* Tamaño pequeño */
+}
+
+/* ========== SECCIÓN DE NOTIFICACIONES ========== */
+.notificaciones {
+  display: flex;                                 /* Distribución flexbox */
+  flex-direction: column;                        /* Elementos en columna */
+  flex: 1;                                       /* Toma espacio disponible */
+  min-height: 200px;                             /* Alto mínimo */
+}
+
+/* Encabezado de notificaciones */
+.notificaciones h2 {
+  margin: 0 0 12px 0;                            /* Margen solo inferior */
+}
+
+/* ========== LISTA DE NOTIFICACIONES (DESLIZABLE) ========== */
+.notificaciones-list {
+  display: flex;                                 /* Distribución flexbox */
+  flex-direction: column;                        /* Elementos en columna */
+  gap: 12px;                                     /* Espacio entre notificaciones */
+  overflow-y: auto;                              /* Deslizable verticalmente */
+  flex: 1;                                       /* Toma espacio disponible */
+  padding-right: 8px;                            /* Espacio para scrollbar */
+}
+
+/* ========== ESTILOS DE SCROLLBAR PERSONALIZADA ========== */
+/* Scrollbar en navegadores Chrome, Safari, Edge */
+.notificaciones-list::-webkit-scrollbar {
+  width: 6px;                                    /* Ancho de la scrollbar */
+}
+
+/* Fondo de la scrollbar */
+.notificaciones-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Thumb (deslizador) de la scrollbar */
+.notificaciones-list::-webkit-scrollbar-thumb {
+  background: #0191cc;                           /* Color celeste */
+  border-radius: 10px;
+}
+
+/* Thumb al pasar el cursor */
+.notificaciones-list::-webkit-scrollbar-thumb:hover {
+  background: #0172a4;                           /* Celeste más oscuro */
+}
+
+/* ========== NOTIFICACIÓN INDIVIDUAL ========== */
+.notification-item {
+  background: #f9f9fb;                           /* Fondo gris muy claro */
+  padding: 12px 14px;                            /* Espaciado interno */
+  border-radius: 8px;                            /* Esquinas redondeadas */
+  border-left: 3px solid #34be82;                /* Borde izquierdo verde */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);       /* Sombra muy sutil */
+}
+
+/* Hora de la notificación */
+.notification-time {
+  font-size: 0.75em;                             /* Tamaño muy pequeño */
+  color: #999;                                   /* Color gris */
+  margin-bottom: 4px;                            /* Margen inferior */
+}
+
+/* Contenido de la notificación */
+.notification-content {
+  font-size: 0.95em;                             /* Tamaño pequeño */
+  color: #22223b;                                /* Color oscuro */
+  font-weight: 500;                              /* Semi-negrita */
+}
+
+/* ========== MAPA INTERACTIVO ========== */
+#map {
+  flex: 1 1 340px;                               /* Toma espacio disponible */
+  min-width: 440px;                              /* Ancho mínimo */
+  height: 573px;                                 /* Alto fijo */
+  border-radius: 28px;                           /* Esquinas muy redondeadas */
+  box-shadow: 0 4px 18px rgba(170,170,170,0.47);/* Sombra pronunciada */
+  background: #e7e7e7;                           /* Fondo gris (mientras carga) */
+  border: 5px solid #ffffff;                     /* Borde blanco */
+}
+
+/* ========== BARRA INFERIOR (FOOTER) ========== */
+.bottombar {
+  background: #22223b;                           /* Fondo oscuro */
+  color: #fff;                                   /* Texto blanco */
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);     /* Sombra superior */
+  margin-top: auto;                              /* Se pega al fondo automáticamente */
+  width: 100%;                                   /* Ancho completo */
+}
+
+/* Contenedor interno del footer */
+.bottombar-inner {
+  max-width: 1120px;                             /* Ancho máximo */
+  margin: 0 auto;                                /* Centrado */
+  padding: 14px 20px;                            /* Espaciado interno */
+  display: flex;                                 /* Distribución flexbox */
+  align-items: center;                           /* Centrado vertical */
+  justify-content: space-between;                /* Espacio entre elementos */
+  gap: 12px;                                     /* Espacio entre items */
+  flex-wrap: wrap;                               /* Responsive: elementos en nueva fila */
+}
+
+/* Título del footer */
+.footer-title {
+  font-size: 1.05em;                             /* Tamaño ligeramente grande */
+  font-weight: 700;                              /* Negrita */
+  letter-spacing: 1px;                           /* Espaciado entre letras */
+  color: #fff;                                   /* Color blanco */
+}
+
+/* Contenedor de enlaces */
+.footer-links {
+  display: flex;                                 /* Distribución horizontal */
+  gap: 10px;                                     /* Espacio entre enlaces */
+  flex-wrap: wrap;                               /* Responsive */
+}
+
+/* Enlace individual */
+.footer-links a {
+  text-decoration: none;                         /* Sin subrayado */
+  color: #22223b;                                /* Texto oscuro */
+  background: #f6cd60;                           /* Fondo amarillo */
+  font-weight: 600;                              /* Semi-negrita */
+  padding: 8px 14px;                             /* Espaciado interno */
+  border-radius: 8px;                            /* Esquinas redondeadas */
+  transition: background 0.15s, color 0.15s, transform 0.08s;  /* Transición suave */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);       /* Sombra sutil */
+}
+
+/* Enlace al pasar el cursor */
+.footer-links a:hover {
+  background: #eb5222;                           /* Fondo naranja */
+  color: #fff;                                   /* Texto blanco */
+  transform: translateY(-1px);                   /* Efecto de "subida" */
+}
+
+/* ========== ESTILOS RESPONSIVOS (MÓVILES) ========== */
+@media (max-width: 600px) {
+  /* Footer centrado en móviles */
+  .bottombar-inner {
+    justify-content: center;
+  }
+  
+  /* Título del footer en ancho completo y centrado */
+  .footer-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  /* Enlaces centrados */
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+/* ========== ESTILOS RESPONSIVOS (TABLETS) ========== */
+@media (max-width: 950px) {
+  /* Contenedor principal en columna */
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* Mapa más pequeño en tablets */
+  #map {
+    width: 100%;
+    min-width: 230px;
+    height: 320px;
+    margin-top: 25px;
+  }
+  
+  /* Contenedor de información en ancho completo */
+  .info-container {
+    width: 98vw;
+    max-width: 98vw;
+    min-width: unset;
+  }
+}
