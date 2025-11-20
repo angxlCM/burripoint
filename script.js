@@ -21,7 +21,7 @@
 
 // ========= MOSTRAR LA UBICACIÓN EN TIEMPO REAL =========
 
-const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
+//const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
 let marcadorGPS = null;
 
 // Actualiza el marcador en el mapa y centra la vista
@@ -44,7 +44,7 @@ function pedirUbicacion() {
         actualizarMarcador(
           parseFloat(data.latitud),
           parseFloat(data.longitud),
-          data.timestamp
+          data.timestamphe
         );
       }
     })
