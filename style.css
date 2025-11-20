@@ -4,9 +4,10 @@ body {
   margin: 0;                                     /* Sin margen exterior */
   padding: 0;                                    /* Sin relleno exterior */
   /* Degradado de fondo: naranja a celeste */
-  background: linear-gradient(180deg, #eb5222 35%, #0192cc9b 85%);
+  /*background: linear-gradient(180deg, #eb5222 35%, #0192cc9b 85%);*/
   min-height: 100vh;                             /* Altura mínima: pantalla completa */
-  color: #22223b;                                /* Color de texto por defecto */
+  background-color: #d8e9ef;
+  color: #000000;                                /* Color de texto por defecto */
   position: relative;                            /* Para el elemento ::before */
   display: flex;                                 /* NUEVO: Distribución flexbox */
   flex-direction: column;                        /* NUEVO: Elementos en columna */
@@ -31,10 +32,9 @@ body::before {
 
 /* ========== ENCABEZADO (TOPBAR) ========== */
 .topbar {
-  background: #f6ce60d8;                           /* Color amarillo */
-  color: #fff;                                   /* Texto blanco */
+  background: #454552;                           /* Color  */
+  color: #ffffff;                                   /* Texto blanco */
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);      /* Sombra sutil */
-  border-bottom: #22223b 6.5px solid;            /* Borde inferior oscuro */
 }
 
 /* Contenedor interno del encabezado */
@@ -76,13 +76,15 @@ body::before {
 
 /* Parte "Burri" del título en naranja */
 .titulo-burri {
-  color: #eb5222;
+  color: #EA5222;
   margin-right: -5px;                            /* Acerca "Point" hacia "Burri" */
+  text-shadow:#22223b 3px 3px 4px;
 }
 
 /* Parte "Point" del título en celeste */
 .titulo-point {
-  color: #0191cc;
+  color: #61acd0;
+  text-shadow:#22223b 3px 3px 4px;
 }
 
 /* ========== CONTENEDOR PRINCIPAL ========== */
@@ -259,7 +261,7 @@ body::before {
 
 /* ========== BARRA INFERIOR (FOOTER) ========== */
 .bottombar {
-  background: #22223b;                           /* Fondo oscuro */
+  background: #454552;                           /* Fondo oscuro */
   color: #fff;                                   /* Texto blanco */
   box-shadow: 0 -2px 10px rgba(0,0,0,0.06);     /* Sombra superior */
   margin-top: auto;                              /* Se pega al fondo automáticamente */
@@ -280,9 +282,9 @@ body::before {
 
 /* Título del footer */
 .footer-title {
-  font-size: 1.05em;                             /* Tamaño ligeramente grande */
+  font-size: 1.25em;                             /* Tamaño ligeramente grande */
   font-weight: 700;                              /* Negrita */
-  letter-spacing: 1px;                           /* Espaciado entre letras */
+  letter-spacing: 2px;                           /* Espaciado entre letras */
   color: #fff;                                   /* Color blanco */
 }
 
@@ -297,7 +299,7 @@ body::before {
 .footer-links a {
   text-decoration: none;                         /* Sin subrayado */
   color: #22223b;                                /* Texto oscuro */
-  background: #f6cd60;                           /* Fondo amarillo */
+  background: #f3cbae;                           /* Fondo amarillo */
   font-weight: 600;                              /* Semi-negrita */
   padding: 8px 14px;                             /* Espaciado interno */
   border-radius: 8px;                            /* Esquinas redondeadas */
@@ -307,8 +309,8 @@ body::before {
 
 /* Enlace al pasar el cursor */
 .footer-links a:hover {
-  background: #eb5222;                           /* Fondo naranja */
-  color: #fff;                                   /* Texto blanco */
+  background: #b17a7a;                           /* Fondo naranja */
+  color: #ffffff;                                   /* Texto blanco */
   transform: translateY(-1px);                   /* Efecto de "subida" */
 }
 
