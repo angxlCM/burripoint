@@ -35,6 +35,16 @@ var icono_personalizado = L.icon({
   popupAnchor: [-3, -38]                       // Punto desde el cual se abrirá el popup relativo al icono
 });
 
+// NUEVO: Icono para el marcador GPS (ubicación en tiempo real)
+var icono_gps = L.icon({
+  iconUrl: 'imagenes/logo_gps.png',      // Imagen del icono GPS
+  iconSize: [35, 35],                     // Tamaño más grande que los paraderos
+  iconAnchor: [17, 35],                   // Centro del icono
+  popupAnchor: [-3, -35]                  // Posición del popup
+});
+
+
+
 // Crear marcador en paradero 1
 var puerta_2 = L.marker([-12.059520, -77.079642], {icon: icono_personalizado}).addTo(map);
 var ingindustrial = L.marker([-12.060373, -77.080684], {icon: icono_personalizado}).addTo(map);
@@ -45,16 +55,6 @@ var odontologia = L.marker([-12.054881, -77.086214], {icon: icono_personalizado}
 var biblioteca_zulen = L.marker([-12.056243, -77.085117], {icon: icono_personalizado}).addTo(map);
 var coliseo = L.marker([-12.060001, -77.084505], {icon: icono_personalizado}).addTo(map);
 var comedor = L.marker([-12.060780, -77.082891], {icon: icono_personalizado}).addTo(map);
-
-// ========== MARCADORES PERSONALIZADOS EN EL MAPA ==========
-
-// Definir icono personalizado para los paraderos
-var icono_personalizado = L.icon({
-  iconUrl: 'imagenes/logo_paradero.png',
-  iconSize: [25, 25],
-  iconAnchor: [22, 38],
-  popupAnchor: [-3, -38]
-});
 
 // Array con los datos de los marcadores (ubicación y nombre)
 const marcadores = [
@@ -70,9 +70,6 @@ const marcadores = [
   { nombre: "Coliseo/gimnasio", lat: -12.060001, lng: -77.084505 },
   { nombre: "Comedor", lat: -12.060780, lng: -77.082891 },
   { nombre: "Ing. Industrial", lat: -12.060373, lng: -77.080684 },
-
-  
-  
 ];
 
 // Crear todos los marcadores en un bucle
@@ -93,7 +90,7 @@ marcadores.forEach(marcador => {
 // ========== MOSTRAR LA UBICACIÓN EN TIEMPO REAL ==========
 
 // URL del backend en Railway que devuelve la última ubicación
-const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
+//const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
 
 // Variable para almacenar el marcador del GPS en el mapa
 let marcadorGPS = null;
@@ -103,28 +100,29 @@ let isServiceActive = false;
 
 // Contador de errores consecutivos
 let errorCount = 0;
-const MAX_ERRORS = 3;  // Después de 3 errores, marcar como inactivo
+const MAX_ERRORS = 3;
 
 /**
- * Actualiza la posición del marcador en el mapa
+ * Actualiza la posición del marcador GPS en el mapa
  * @param {number} lat - Latitud de la ubicación
  * @param {number} lng - Longitud de la ubicación
  * @param {string} timestamp - Hora de la ubicación
  */
 function actualizarMarcador(lat, lng, timestamp) {
-  // Si no existe marcador, crear uno nuevo
+  // Si no existe marcador, crear uno nuevo con icono GPS
   if (!marcadorGPS) {
-    marcadorGPS = L.marker([lat, lng]).addTo(map);
+    marcadorGPS = L.marker([lat, lng], {icon: icono_gps}).addTo(map);
   } else {
     // Si existe, actualizar su posición
     marcadorGPS.setLatLng([lat, lng]);
-  }  
+  }
+  
   // Centrar el mapa en la nueva ubicación
   map.setView([lat, lng], 16);
   
-  // NUEVO: Si recibimos datos, el servicio está activo
+  // Si recibimos datos, el servicio está activo
   isServiceActive = true;
-  errorCount = 0;  // Reiniciar contador de errores
+  errorCount = 0;
   actualizarEstadoServicio();
 }
 

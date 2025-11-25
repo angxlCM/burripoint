@@ -214,13 +214,13 @@ body {
 
 /* Thumb (deslizador) de la scrollbar */
 .notificaciones-list::-webkit-scrollbar-thumb {
-  background: #0191cc;                           /* Color celeste */
+  background: #3e6c82;                           /* Color celeste */
   border-radius: 10px;
 }
 
 /* Thumb al pasar el cursor */
 .notificaciones-list::-webkit-scrollbar-thumb:hover {
-  background: #0172a4;                           /* Celeste más oscuro */
+  background: #2a4d62;                           /* Celeste más oscuro */
 }
 
 /* ========== NOTIFICACIÓN INDIVIDUAL ========== */
@@ -228,7 +228,7 @@ body {
   background: #f9f9fb;                           /* Fondo gris muy claro */
   padding: 12px 14px;                            /* Espaciado interno */
   border-radius: 8px;                            /* Esquinas redondeadas */
-  border-left: 3px solid #EA5222;                /* Borde izquierdo verde */
+  border-left: 3px solid #26845b;                /* Borde izquierdo verde */
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);       /* Sombra muy sutil */
 }
 
@@ -242,7 +242,7 @@ body {
 /* Contenido de la notificación */
 .notification-content {
   font-size: 0.95em;                             /* Tamaño pequeño */
-  color: #22223b;                                /* Color oscuro */
+  color: #000000;                                /* Color oscuro */
   font-weight: 500;                              /* Semi-negrita */
 }
 
@@ -250,7 +250,7 @@ body {
 #map {
   flex: 1 1 340px;                               /* Toma espacio disponible */
   min-width: 440px;                              /* Ancho mínimo */
-  height: 573px;                                 /* Alto fijo */
+  height: 545px;                                 /* Alto fijo */
   border-radius: 28px;                           /* Esquinas muy redondeadas */
   box-shadow: 0 4px 18px rgba(170,170,170,0.47);/* Sombra pronunciada */
   background: #e7e7e7;                           /* Fondo gris (mientras carga) */
