@@ -39,33 +39,71 @@ var icono_personalizado = L.icon({
 var puerta_2 = L.marker([-12.059520, -77.079642], {icon: icono_personalizado}).addTo(map);
 var ingindustrial = L.marker([-12.060373, -77.080684], {icon: icono_personalizado}).addTo(map);
 var ciencias_economicas = L.marker([-12.057740, -77.080077], {icon: icono_personalizado}).addTo(map);
-// Añadir popup al marcador
-puerta_2.bindTooltip( "Puerta 2", {
-  permanent: false,
-  direction: 'top',
-  className: 'custom-tooltip'  // Clase CSS personalizada para el tooltip
+var clinica = L.marker([-12.055418, -77.082340], {icon: icono_personalizado}).addTo(map);
+var puerta_7 = L.marker([-12.054127, -77.084543], {icon: icono_personalizado}).addTo(map);
+var odontologia = L.marker([-12.054881, -77.086214], {icon: icono_personalizado}).addTo(map);
+var biblioteca_zulen = L.marker([-12.056243, -77.085117], {icon: icono_personalizado}).addTo(map);
+var coliseo = L.marker([-12.060001, -77.084505], {icon: icono_personalizado}).addTo(map);
+var comedor = L.marker([-12.060780, -77.082891], {icon: icono_personalizado}).addTo(map);
+
+// ========== MARCADORES PERSONALIZADOS EN EL MAPA ==========
+
+// Definir icono personalizado para los paraderos
+var icono_personalizado = L.icon({
+  iconUrl: 'imagenes/logo_paradero.png',
+  iconSize: [25, 25],
+  iconAnchor: [22, 38],
+  popupAnchor: [-3, -38]
 });
 
-ingindustrial.bindTooltip( "Ing. Industrial", {
-  permanent: false,
-  direction: 'top',
-  className: 'custom-tooltip'  // Clase CSS personalizada para el tooltip
+// Array con los datos de los marcadores (ubicación y nombre)
+const marcadores = [
+  { nombre: "Puerta 2", lat: -12.059520, lng: -77.079642 },
+  { nombre: "Ciencias Económicas", lat: -12.057740, lng: -77.080077 },
+  { nombre: "Clínica", lat: -12.055418, lng: -77.082340 },
+  { nombre: "Ingeniería de Sistemas", lat: -12.053762 , lng: -77.085757}, 
+
+
+  { nombre: "Puerta 7", lat: -12.054127, lng: -77.084543 },
+  { nombre: "Odontología", lat: -12.054881, lng: -77.086214 },
+  { nombre: "Biblioteca Zulen", lat: -12.056243, lng: -77.085117 },
+  { nombre: "Coliseo/gimnasio", lat: -12.060001, lng: -77.084505 },
+  { nombre: "Comedor", lat: -12.060780, lng: -77.082891 },
+  { nombre: "Ing. Industrial", lat: -12.060373, lng: -77.080684 },
+
+  
+  
+];
+
+// Crear todos los marcadores en un bucle
+marcadores.forEach(marcador => {
+  const marker = L.marker([marcador.lat, marcador.lng], {icon: icono_personalizado}).addTo(map);
+  
+  // Añadir tooltip a cada marcador
+  marker.bindTooltip(marcador.nombre, {
+    permanent: false,
+    direction: 'top',
+    className: 'custom-tooltip'
+  });
 });
 
-ciencias_economicas.bindTooltip( "Ciencias Económicas", {
-  permanent: false,
-  direction: 'top',
-  className: 'custom-tooltip'  // Clase CSS personalizada para el tooltip
-});
+
 
 
 // ========== MOSTRAR LA UBICACIÓN EN TIEMPO REAL ==========
 
 // URL del backend en Railway que devuelve la última ubicación
-//const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
+const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
 
 // Variable para almacenar el marcador del GPS en el mapa
 let marcadorGPS = null;
+
+// Variable para controlar si el servicio está activo
+let isServiceActive = false;
+
+// Contador de errores consecutivos
+let errorCount = 0;
+const MAX_ERRORS = 3;  // Después de 3 errores, marcar como inactivo
 
 /**
  * Actualiza la posición del marcador en el mapa
@@ -80,18 +118,31 @@ function actualizarMarcador(lat, lng, timestamp) {
   } else {
     // Si existe, actualizar su posición
     marcadorGPS.setLatLng([lat, lng]);
-  }
-  
-  // Mostrar información al hacer clic en el marcador
-  marcadorGPS.bindPopup(`
-    <strong>Ubicación GPS</strong><br>
-    Lat: ${lat.toFixed(4)}<br>
-    Lng: ${lng.toFixed(4)}<br>
-    Hora: ${timestamp}
-  `).openPopup();
-  
+  }  
   // Centrar el mapa en la nueva ubicación
   map.setView([lat, lng], 16);
+  
+  // NUEVO: Si recibimos datos, el servicio está activo
+  isServiceActive = true;
+  errorCount = 0;  // Reiniciar contador de errores
+  actualizarEstadoServicio();
+}
+
+/**
+ * Actualiza el badge de estado del servicio en la interfaz
+ */
+function actualizarEstadoServicio() {
+  const statusBadge = document.getElementById('statusBadge');
+  
+  if (isServiceActive) {
+    statusBadge.classList.remove('inactive');
+    statusBadge.classList.add('active');
+    statusBadge.textContent = 'Activo';
+  } else {
+    statusBadge.classList.remove('active');
+    statusBadge.classList.add('inactive');
+    statusBadge.textContent = 'No Activo';
+  }
 }
 
 /**
@@ -107,13 +158,20 @@ function pedirUbicacion() {
         actualizarMarcador(
           parseFloat(data.latitud),
           parseFloat(data.longitud),
-          data.timestamp || 'No disponible'  // Usar 'No disponible' si timestamp no existe
+          data.timestamp || 'No disponible'
         );
       }
     })
     .catch((error) => {
-      // Registrar errores en la consola (no muestra al usuario)
+      // NUEVO: Incrementar contador de errores
+      errorCount++;
       console.error('Error al obtener ubicación:', error);
+      
+      // Si llegamos al máximo de errores, marcar como inactivo
+      if (errorCount >= MAX_ERRORS) {
+        isServiceActive = false;
+        actualizarEstadoServicio();
+      }
     });
 }
 
@@ -124,15 +182,6 @@ pedirUbicacion();
 setInterval(pedirUbicacion, 3000);
 
 // ========== CONTROL DE ESTADO DEL SERVICIO ==========
-// Cambia 'true' a 'false' para mostrar el servicio como inactivo
-const isServiceActive = true;
+// Inicializar el estado del servicio
+actualizarEstadoServicio();
 
-// Obtener el elemento del badge de estado
-const statusBadge = document.getElementById('statusBadge');
-
-// Si el servicio no está activo, cambiar su apariencia
-if (!isServiceActive) {
-  statusBadge.classList.remove('active');      // Quitar clase verde
-  statusBadge.classList.add('inactive');       // Agregar clase roja
-  statusBadge.textContent = 'No Activo';       // Cambiar texto
-}

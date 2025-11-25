@@ -296,8 +296,8 @@ body {
 /* Enlace individual */
 .footer-links a {
   text-decoration: none;                         /* Sin subrayado */
-  color: #22223b;                                /* Texto oscuro */
-  background: #f3cbae;                           /* Fondo amarillo */
+  color: #ffffff;                                /* Texto oscuro */
+  background: #b17a7a;                           /* Fondo amarillo */
   font-weight: 600;                              /* Semi-negrita */
   padding: 8px 14px;                             /* Espaciado interno */
   border-radius: 8px;                            /* Esquinas redondeadas */
@@ -307,8 +307,8 @@ body {
 
 /* Enlace al pasar el cursor */
 .footer-links a:hover {
-  background: #b17a7a;                           /* Fondo naranja */
-  color: #ffffff;                                   /* Texto blanco */
+  background: #cdd64f;                           /* Fondo naranja */
+  color: #000000;                                   /* Texto blanco */
   transform: translateY(-1px);                   /* Efecto de "subida" */
 }
 
