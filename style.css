@@ -6,7 +6,7 @@ body {
   /* Degradado de fondo: naranja a celeste */
   /*background: linear-gradient(180deg, #eb5222 35%, #0192cc9b 85%);*/
   min-height: 100vh;                             /* Altura mínima: pantalla completa */
-  background-color: #d8e9ef;
+  background-color: #beccd1;
   color: #000000;                                /* Color de texto por defecto */
   position: relative;                            /* Para el elemento ::before */
   display: flex;                                 /* NUEVO: Distribución flexbox */

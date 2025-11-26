@@ -19,12 +19,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-//estilo del mapa (eliminar etiquetas)
-L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png', {
-  minZoom: 0,
-  maxZoom: 18,
-  attribution: '© <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a>, © <a href="https://www.stamen.com/" target="_blank">Stamen Design</a>, © <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a>, © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
-}).addTo(map);
+
 // ========== MARCADORES PERSONALIZADOS EN EL MAPA ==========
 
 // Definir icono personalizado para los paraderos
@@ -90,7 +85,7 @@ marcadores.forEach(marcador => {
 // ========== MOSTRAR LA UBICACIÓN EN TIEMPO REAL ==========
 
 // URL del backend en Railway que devuelve la última ubicación
-//const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
+const URL_GET = 'https://backend-production-79bd.up.railway.app/ultima';
 
 // Variable para almacenar el marcador del GPS en el mapa
 let marcadorGPS = null;
